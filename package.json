@@ -1,0 +1,47 @@
+{
+  "name": "cli",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm run ssr",
+    "ssr": "npm run build:dynamic && npm run serve:dynamic",
+    "serve": "ng serve",
+    "build:dynamic": "npm run build:client-and-server-bundles && npm run webpack:server",
+    "serve:dynamic": "node dist/server.js",
+    "build:client-and-server-bundles": "ng build --prod && ng build --prod --app 1 --output-hashing=false",
+    "webpack:server": "webpack --config webpack.server.config.js --progress --colors"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^5.0.0-rc.2",
+    "@angular/common": "^5.0.0-rc.2",
+    "@angular/compiler": "^5.0.0-rc.2",
+    "@angular/core": "^5.0.0-rc.2",
+    "@angular/forms": "^5.0.0-rc.2",
+    "@angular/http": "^5.0.0-rc.2",
+    "@angular/platform-browser": "^5.0.0-rc.2",
+    "@angular/platform-browser-dynamic": "^5.0.0-rc.2",
+    "@angular/platform-server": "^5.0.0-rc.2",
+    "@angular/router": "^5.0.0-rc.2",
+    "@nguniversal/module-map-ngfactory-loader": "^1.0.0-beta.3",
+    "apollo-angular": "^1.0.0-beta.0",
+    "apollo-angular-link-http": "^0.0.1-beta.0",
+    "apollo-cache-inmemory": "^0.2.0-rc.1",
+    "apollo-client": "^2.0.0-rc.3",
+    "apollo-link": "^0.8.0",
+    "core-js": "^2.4.1",
+    "graphql-tag": "^2.4.2",
+    "rxjs": "^5.4.2",
+    "ts-loader": "^2.3.7",
+    "zone.js": "^0.8.14"
+  },
+  "devDependencies": {
+    "@angular/cli": "1.4.7",
+    "@angular/compiler-cli": "^5.0.0-rc.2",
+    "@angular/language-service": "^5.0.0-rc.2",
+    "@types/node": "^8.0.44",
+    "@types/zen-observable": "^0.5.3",
+    "graphql": "^0.11.7",
+    "typescript": "~2.3.2"
+  }
+}
