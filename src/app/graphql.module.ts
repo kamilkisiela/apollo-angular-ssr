@@ -31,6 +31,11 @@ export class GraphQLModule {
     this.cache = new InMemoryCache();
     this.link = this.httpLink.create({ uri });
 
+    this.apollo.create({
+      link: this.link,
+      cache: this.cache,
+    });
+
     const isBrowser = this.transferState.hasKey<NormalizedCache>(STATE_KEY);
     
     if (isBrowser) {
@@ -41,12 +46,6 @@ export class GraphQLModule {
   }
 
   onServer() {
-    this.apollo.create({
-      link: this.link,
-      cache: this.cache,
-      ssrMode: true
-    });
-
     this.transferState.onSerialize(STATE_KEY, () => 
       this.cache.extract()
     );
@@ -56,10 +55,5 @@ export class GraphQLModule {
     const state = this.transferState.get<NormalizedCache>(STATE_KEY, null);
     
     this.cache.restore(state);
-    
-    this.apollo.create({
-      link: this.link,
-      cache: this.cache,
-    });
   }
 }
