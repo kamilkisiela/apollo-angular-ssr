@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, BrowserTransferStateModule, TransferState, makeStateKey } from '@angular/platform-browser';
+import { BrowserTransferStateModule, TransferState, makeStateKey } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 // Apollo
 import { ApolloModule, Apollo } from 'apollo-angular';
 import { HttpLinkModule, HttpLink, HttpLinkHandler } from 'apollo-angular-link-http';
-import { InMemoryCache, NormalizedCache } from 'apollo-cache-inmemory';
+import {InMemoryCache, NormalizedCache, NormalizedCacheObject} from 'apollo-cache-inmemory';
 
 // GraphiQL: https://launchpad.graphql.com/1jzxrj179
 const uri = 'https://1jzxrj179.lp.gql.zone/graphql';
@@ -52,7 +52,7 @@ export class GraphQLModule {
   }
 
   onBrowser() {
-    const state = this.transferState.get<NormalizedCache>(STATE_KEY, null);
+    const state = this.transferState.get<NormalizedCacheObject>(STATE_KEY, null);
     
     this.cache.restore(state);
   }

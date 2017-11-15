@@ -8,6 +8,7 @@ export type Post = {
   id: number;
   title: string;
   votes: number;
+  author: Author
 }
 
 export type Query = {
