@@ -6,7 +6,7 @@
     "start": "npm run ssr",
     "ssr": "npm run build:ssr && npm run serve:ssr",
     "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
-    "serve:ssr": "node dist/server",
+    "serve:ssr": "ts-node -P tsconfig.server.json server.ts",
     "build:client-and-server-bundles": "ng build --prod && ng run apollo-angular-ssr:server",
     "webpack:server": "webpack --config webpack.server.config.js --progress",
     "serve": "ng serve"
